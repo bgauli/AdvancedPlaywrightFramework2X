@@ -67,13 +67,15 @@ Run only the Chromium project:
 npx playwright test --project=chromium
 ```
 
-Open the most recent HTML report:
+The custom TTA HTML report is written to `tta-report/report_<run-id>.html`; `tta-report/index.html` redirects to the latest report. Open `tta-report/index.html` in a browser to view the latest run. In PowerShell, you can launch it with:
 
 ```bash
-npx playwright show-report
+Start-Process .\tta-report\index.html
 ```
 
-Tests run fully in parallel by default. The test timeout is 60 seconds and the assertion timeout is 10 seconds. On CI, tests retry twice and use one worker. Screenshots are saved on failure, video is recorded, and traces are collected on the first retry.
+The report includes run totals, environment and browser metadata, priority/status filters, and an expanded detail panel for each test with captured logs, steps, errors, screenshots, videos, and traces when available. Test rows show the test's actual start/end times, source file and line, tags, and priority. It also includes AI data, AI verdict, self-heal, and flaky-analysis tabs.
+
+Tests run fully in parallel by default. The test timeout is 60 seconds and the assertion timeout is 10 seconds. On CI, tests retry twice and use one worker. Screenshots are saved on failure; video and trace are recorded for every test so both are available from the report.
 
 ## Project structure
 
@@ -116,4 +118,4 @@ The configuration loads `.env` with `dotenv`. CI behavior is activated by settin
 - `ajv`, `ajv-formats` — JSON schema validation
 - `allure-playwright` — Allure integration package (not currently configured as a reporter)
 
-The active reporters are the Playwright HTML reporter and the list reporter. There are no npm test scripts yet; use the `npx playwright` commands above.
+The active reporters are the custom TTA HTML reporter and the list reporter. AI verdict and self-heal features require their corresponding optional integrations. There are no npm test scripts yet; use the `npx playwright` commands above.

@@ -6,7 +6,16 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["node", "@playwright/test"]
+    "types": ["node", "@playwright/test"],
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["src/api/*"],
+      "@config/*": ["src/config/*"],
+      "@fixtures/*": ["src/fixtures/*"],
+      "@pages/*": ["src/pages/*"],
+      "@testdata/*": ["src/testdata/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "include": ["playwright.config.ts", "src/**/*.ts"]
 }
